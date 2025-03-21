@@ -1,0 +1,15 @@
+tables:
+  - name: "education_level"
+    bronze:
+      source_path: "Files/education_level/inbound/"
+    silver:
+      path: "/Tables/education_level"
+      columns:
+        - source_name: EducationLevelID
+          target_name: education_level_id
+          is_nullable: 0
+          type: IntegerType()
+        - source_name: EducationLevel
+          target_name: education_level
+          is_nullable: 1
+          type: StringType()

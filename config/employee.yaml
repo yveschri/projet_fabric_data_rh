@@ -1,0 +1,99 @@
+tables:
+  - name: "employee"
+    bronze:
+      source_path: "Files/employee/inbound/"
+    silver:
+      path: "/Tables/employee"
+      columns:
+        - source_name: EmployeeID
+          target_name: employee_id
+          is_nullable: 0
+          type: StringType()
+        - source_name: FirstName
+          target_name: first_name
+          is_nullable: 1
+          type: StringType()
+        - source_name: LastName
+          target_name: last_name
+          is_nullable: 1
+          type: StringType()
+        - source_name: Gender
+          target_name: gender
+          is_nullable: 1
+          type: StringType()
+        - source_name: Age
+          target_name: age
+          is_nullable: 1
+          type: IntegerType()
+        - source_name: BusinessTravel
+          target_name: business_travel
+          is_nullable: 1
+          type: StringType()
+        - source_name: Department
+          target_name: department
+          is_nullable: 1
+          type: StringType()
+        - source_name: DistanceFromHome
+          target_name: distance_from_home
+          is_nullable: 1
+          type: IntegerType()
+        - source_name: State
+          target_name: state
+          is_nullable: 1
+          type: StringType()
+        - source_name: Ethnicity
+          target_name: ethnicity
+          is_nullable: 1
+          type: StringType()
+        - source_name: Education
+          target_name: education
+          is_nullable: 1
+          type: IntegerType()
+        - source_name: EducationField
+          target_name: education_field
+          is_nullable: 1
+          type: StringType()
+        - source_name: JobRole
+          target_name: job_role
+          is_nullable: 1
+          type: StringType()
+        - source_name: MaritalStatus
+          target_name: marital_status
+          is_nullable: 1
+          type: StringType()
+        - source_name: Salary
+          target_name: salary
+          is_nullable: 1
+          type: IntegerType()
+        - source_name: StockOptionLevel
+          target_name: stock_option_level
+          is_nullable: 1
+          type: IntegerType()
+        - source_name: OverTime
+          target_name: over_time
+          is_nullable: 1
+          type: StringType()
+        - source_name: HireDate
+          target_name: hire_date
+          is_nullable: 1
+          type: DateType()
+        - source_name: Attrition
+          target_name: attrition
+          is_nullable: 1
+          type: StringType()
+        - source_name: YearsAtCompany
+          target_name: years_at_company
+          is_nullable: 1
+          type: IntegerType()
+        - source_name: YearsInMostRecentRole
+          target_name: years_in_most_recent_role
+          is_nullable: 1
+          type: IntegerType()
+        - source_name: YearsSinceLastPromotion
+          target_name: years_since_last_promotion
+          is_nullable: 1
+          type: IntegerType()
+        - source_name: YearsWithCurrManager
+          target_name: years_with_curr_manager
+          is_nullable: 1
+          type: IntegerType()

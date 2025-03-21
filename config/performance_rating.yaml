@@ -1,0 +1,51 @@
+tables:
+  - name: "performance_rating"
+    bronze:
+      source_path: "Files/performance_rating/inbound/"
+    silver:
+      path: "/Tables/performance_rating"
+      columns:
+        - source_name: PerformanceID
+          target_name: performance_id
+          is_nullable: 0
+          type: StringType()
+        - source_name: EmployeeID
+          target_name: employee_id
+          is_nullable: 0
+          type: StringType()
+        - source_name: ReviewDate
+          target_name: review_date
+          is_nullable: 1
+          type: StringType()
+        - source_name: EnvironmentSatisfaction
+          target_name: environment_satisfaction
+          is_nullable: 1
+          type: IntegerType()
+        - source_name: JobSatisfaction
+          target_name: job_satisfaction
+          is_nullable: 1
+          type: IntegerType()
+        - source_name: RelationshipSatisfaction
+          target_name: relationship_satisfaction
+          is_nullable: 1
+          type: IntegerType()
+        - source_name: TrainingOpportunitiesWithinYear
+          target_name: training_opportunities_within_year
+          is_nullable: 1
+          type: IntegerType()
+        - source_name: TrainingOpportunitiesTaken
+          target_name: training_opportunities_taken
+          is_nullable: 1
+          type: IntegerType()
+        - source_name: WorkLifeBalance
+          target_name: work_life_balance
+          is_nullable: 1
+          type: IntegerType()
+        - source_name: SelfRating
+          target_name: self_rating
+          is_nullable: 1
+          type: IntegerType()
+        - source_name: ManagerRating
+          target_name: manager_rating
+          is_nullable: 1
+          type: IntegerType()

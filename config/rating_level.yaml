@@ -1,0 +1,16 @@
+tables:
+  - name: "rating_level"
+    bronze:
+      source_path: "Files/rating_level/inbound/"
+    silver:
+      path: "/Tables/rating_level"
+      columns:
+        - source_name: RatingID
+          target_name: rating_id*ù$
+
+          is_nullable: 0
+          type: IntegerType()
+        - source_name: RatingLevel
+          target_name: rating_level
+          is_nullable: 1
+          type: StringType()

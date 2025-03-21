@@ -1,0 +1,186 @@
+tables:
+
+  - name: "bronze_table_employee"
+    layer: "bronze"
+    source_path: "Files/employee/inbound/Employee.csv"
+    schema:
+      EmployeeID: "string"
+      FirstName: "string"
+      LastName: "string"
+      Gender: "string"
+      Age: "integer"
+      BusinessTravel: "string"
+      Department: "string"
+      DistanceFromHome: "integer"
+      State: "string"
+      Ethnicity: "string"
+      Education: "integer"
+      EducationField: "string"
+      JobRole: "string"
+      MaritalStatus: "string"
+      Salary: "integer"
+      StockOptionLevel: "integer"
+      OverTime: "string"
+      HireDate: "string"  
+      Attrition: "string"
+      YearsAtCompany: "integer"
+      YearsInMostRecentRole: "integer"
+      YearsSinceLastPromotion: "integer"
+      YearsWithCurrManager: "integer"
+
+    transformations:
+      rename_columns:
+        EmployeeID: "employee_id"
+        FirstName: "first_name"
+        LastName: "last_name"
+        Gender: "gender"
+        Age: "age"
+        BusinessTravel: "business_travel"
+        Department: "department"
+        DistanceFromHome: "distance_from_home"
+        State: "state"
+        Ethnicity: "ethnicity"
+        Education: "education"
+        EducationField: "education_field"
+        JobRole: "job_role"
+        MaritalStatus: "marital_status"
+        Salary: "salary"
+        StockOptionLevel: "stock_option_level"
+        OverTime: "over_time"
+        HireDate: "hire_date"
+        Attrition: "attrition"
+        YearsAtCompany: "years_at_company"
+        YearsInMostRecentRole: "years_in_most_recent_role"
+        YearsSinceLastPromotion: "years_since_last_promotion"
+        YearsWithCurrManager: "years_with_curr_manager"
+
+  - name: "bronze_table_education_level"
+    layer: "bronze"
+    source_path: "Files/education_level/inbound/EducationLevel.csv"
+    schema:
+      EducationLevelID: "string"
+      EducationLevel: "string"
+
+    transformations:
+      rename_columns:
+        EducationLevelID: "education_level_id"
+        EducationLevel: "education_level"
+
+  - name: "bronze_table_performance_rating"
+    layer: "bronze"
+    source_path: "Files/performance_rating/inbound/PerformanceRating.csv"
+    schema:
+      PerformanceID: "string"
+      EmployeeID: "string"
+      ReviewDate: "string"  
+      EnvironmentSatisfaction: "string"
+      JobSatisfaction: "string"
+      RelationshipSatisfaction: "string"
+      TrainingOpportunitiesWithinYear: "string"
+      TrainingOpportunitiesTaken: "string"
+      WorkLifeBalance: "string"
+      SelfRating: "string"
+      ManagerRating: "string"
+
+    transformations:
+      rename_columns:
+        PerformanceID: "performance_id"
+        EmployeeID: "employee_id"
+        ReviewDate: "review_date"
+        EnvironmentSatisfaction: "environment_satisfaction"
+        JobSatisfaction: "job_satisfaction"
+        RelationshipSatisfaction: "relationship_satisfaction"
+        TrainingOpportunitiesWithinYear: "training_opportunities_within_year"
+        TrainingOpportunitiesTaken: "training_opportunities_taken"
+        WorkLifeBalance: "work_life_balance"
+        SelfRating: "self_rating"
+        ManagerRating: "manager_rating"
+
+  - name: "bronze_table_rating_level"
+    layer: "bronze"
+    source_path: "Files/rating_level/inbound/RatingLevel.csv"
+    schema:
+      RatingID: "string"
+      RatingLevel: "string"
+
+    transformations:
+      rename_columns:
+        RatingID: "rating_id"
+        RatingLevel: "rating_level"
+
+  - name: "bronze_table_satisfied_level"
+    layer: "bronze"
+    source_path: "Files/satisfied_level/inbound/SatisfiedLevel.csv"
+    schema:
+      SatisfactionID: "string"
+      SatisfactionLevel: "string"
+
+    transformations:
+      rename_columns:
+        SatisfactionID: "satisfaction_id"
+        SatisfactionLevel: "satisfaction_level"
+
+  - name: "silver_table_employee"
+    layer: "silver"
+    source_table: "bronze_table_employee"
+    schema:
+      employee_id: "string"
+      first_name: "string"
+      last_name: "string"
+      gender: "string"
+      age: "integer"
+      business_travel: "string"
+      department: "string"
+      distance_from_home: "integer"
+      state: "string"
+      ethnicity: "string"
+      education: "integer"
+      education_field: "string"
+      job_role: "string"
+      marital_status: "string"
+      salary: "integer"
+      stock_option_level: "integer"
+      over_time: "string"
+      hire_date: "string"
+      attrition: "string"
+      years_at_company: "integer"
+      years_in_most_recent_role: "integer"
+      years_since_last_promotion: "integer"
+      years_with_curr_manager: "integer"
+
+  - name: "silver_table_education_level"
+    layer: "silver"
+    source_table: "bronze_table_education_level"
+    schema:
+      education_level_id: "string"
+      education_level: "string"
+
+  - name: "silver_table_performance_rating"
+    layer: "silver"
+    source_table: "bronze_table_performance_rating"
+    schema:
+      performance_id: "string"
+      employee_id: "string"
+      review_date: "string"
+      environment_satisfaction: "string"
+      job_satisfaction: "string"
+      relationship_satisfaction: "string"
+      training_opportunities_within_year: "string"
+      training_opportunities_taken: "string"
+      work_life_balance: "string"
+      self_rating: "string"
+      manager_rating: "string"
+
+  - name: "silver_table_rating_level"
+    layer: "silver"
+    source_table: "bronze_table_rating_level"
+    schema:
+      rating_id: "string"
+      rating_level: "string"
+
+  - name: "silver_table_satisfied_level"
+    layer: "silver"
+    source_table: "bronze_table_satisfied_level"
+    schema:
+      satisfaction_id: "string"
+      satisfaction_level: "string"

@@ -1,0 +1,16 @@
+tables:
+  - name: "satisfied_level"
+    bronze:
+      source_path: "Files/satisfied_level/inbound/"
+    silver:
+      path: "/Tables/satisfied_level"
+      columns:
+        - source_name: SatisfactionID
+          target_name: satisfaction_id
+          is_nullable: 0
+          type: IntegerType()
+        - source_name: SatisfactionLevel
+          target_name: satisfaction_level
+          is_nullable: 1
+          type: StringType()
+

@@ -1,0 +1,22 @@
+tables_gold:
+  - name: gold_employee
+    target: lakehouse_gold.gold_employee
+    sources:
+      - name: employee
+        source_path: "Files/employee/inbound/"
+      - name: education_level
+        source_path: "Files/education_level/inbound/"
+      - name: performance_rating
+        source_path: "Files/performance/inbound/"
+
+  - name: gold_performance_rating
+    target: lakehouse_gold.gold_performance_rating
+    sources:
+      - name: performance_rating
+        source_path: "Files/performance/inbound/"
+      - name: employee
+        source_path: "Files/employee/inbound/"
+      - name: satisfied_level
+        source_path: "Files/satisfaction/inbound/"
+      - name: rating_level
+        source_path: "Files/rating/inbound/"
