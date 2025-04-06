@@ -1,74 +1,72 @@
-# projet_fabric_data_rh
-pipeline avec fabric
+Projet Fabric data RH
+
+Pipeline de transformation de données RH avec Microsoft Fabric (Lakehouse)
+Ce projet met en œuvre la méthode médaillon (Bronze → Silver → Gold) pour construire un pipeline de traitement de données RH à l’aide de notebooks Spark orchestrés dynamiquement via YAML, avec un système de monitoring intégré.
 
 
-🏗️ Architecture
+Architecture du pipeline
 
-Bronze Layer : Ingestion brute des fichiers source
+                ┌─────────────┐
+                │  Données    │
+                │  brutes     │
+                └────┬────────┘
+                     ↓
+                ┌─────────────┐
+                │   Bronze    │ ← Ingestion des fichiers source (.csv)
+                └────┬────────┘
+                     ↓
+                ┌─────────────┐
+                │   Silver    │ ← Nettoyage et normalisation
+                └────┬────────┘
+                     ↓
+                ┌─────────────┐
+                │    Gold     │ ← Agrégation pour analyse métier
+                └─────────────┘
+                
 
-Silver Layer : Transformation et nettoyage des données
+Notebook	Rôle
+notebook_init_folder_lakehouse:	Initialisation des dossiers dans le Lakehouse
+notebook_init_table:	Création des tables Bronze, Silver, Gold
+notebook_function:	Fonctions réutilisables (via %run)
+notebook_load_data:	Ingestion des fichiers source vers Bronze
+notebook_orchestration:	Orchestration dynamique des étapes du pipeline (inputs YAML)
+notebook_init_monitoring_table:	Initialisation des tables de monitoring
 
-Gold Layer : Agrégation et préparation pour l'analyse
+Orchestration dynamique
+Le pipeline est orchestré via un notebook principal qui lit des fichiers YAML pour :
 
-Monitoring : Suivi des exécutions et logs dans monitoring.orchestration
+Connaitre les sources à traiter
 
-📘 Notebooks du projet
+Déterminer le schéma cible et les transformations
 
-Notebook
+Définir les tables Gold à générer à partir de multiples sources
 
-Rôle
+
+Suivi et Monitoring
+Un système de logs et monitoring est intégré au pipeline via des tables de monitoring :
+
+Suivi de l’état des étapes d’exécution
+
+Journalisation des erreurs
+
+Temps d’exécution
+
+Monitoring centralisé dans le notebook monitoring.orchestration
+
+
+Comment exécuter le pipeline
+Initialiser le lac et les tables :
 
 notebook_init_folder_lakehouse
 
-Initialisation des dossiers dans le Lakehouse
-
 notebook_init_table
-
-Création des tables Bronze, Silver, Gold
-
-notebook_function
-
-Contient les fonctions réutilisables
-
-notebook_load_data
-
-Ingestion des fichiers source vers Bronze
-
-notebook_orchestration
-
-Orchestration globale du pipeline
 
 notebook_init_monitoring_table
 
-Initialisation des tables de monitoring
+Lancer l’orchestration principale :
 
-📂 Exemple de configuration YAML
+notebook_orchestration
 
-tables_gold:
-  - name: gold_employee
-    target: lakehouse_gold.gold_employee
-    sources:
-      - name: employee
-        source_path: "Files/employee/inbound/"
-      - name: education_level
-        source_path: "Files/education_level/inbound/"
+Surveiller les exécutions :
 
-🛠️ Technologies Utilisées
-
-Microsoft Fabric (Lakehouse, Notebooks, Spark Pools)
-
-PySpark & Delta Lake
-
-mssparkutils (exécution de notebooks, gestion des fichiers)
-
-YAML (Configuration des pipelines)
-
-Logging et monitoring via monitoring.orchestration
-
-📌 Comment exécuter le pipeline
-
-Exécuter l'initialisation : notebook_init_folder_lakehouse, notebook_init_table
-
-Lancer l'orchestration principale : notebook_orchestration
-
-Surveiller les logs : monitoring.orchestration
+monitoring.orchestration ou via les tables de monitoring
